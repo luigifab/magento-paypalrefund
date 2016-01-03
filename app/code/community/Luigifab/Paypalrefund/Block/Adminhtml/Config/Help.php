@@ -4,7 +4,7 @@
  * Updated V/05/06/2015
  * Version 1
  *
- * Copyright 2015 | Fabrice Creuzot (luigifab) <code~luigifab~info>
+ * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
