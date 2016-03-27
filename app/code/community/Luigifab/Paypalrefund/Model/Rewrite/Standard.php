@@ -1,8 +1,8 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated L/08/06/2015
- * Version 3
+ * Updated D/27/03/2016
+ * Version 4
  *
  * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
@@ -44,11 +44,22 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$admin = Mage::getSingleton('admin/session')->getUser()->getUsername();
 
 			$version = 51;
-			$username = Mage::getStoreConfig('paypalrefund/general/api_username', $order->getStoreId());
-			$password = Mage::getStoreConfig('paypalrefund/general/api_password', $order->getStoreId());
-			$signature = Mage::getStoreConfig('paypalrefund/general/api_signature', $order->getStoreId());
-			$url = (Mage::getStoreConfig('paypalrefund/general/api_sandbox', $order->getStoreId()) === '1') ?
-				'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
+			$source = Mage::getStoreConfig('paypalrefund/general/source', $order->getStoreId());
+
+			if ($source === 'paypal/wpp') {
+				$username = Mage::getStoreConfig($source.'/api_username', $order->getStoreId());
+				$password = Mage::getStoreConfig($source.'/api_password', $order->getStoreId());
+				$signature = Mage::getStoreConfig($source.'/api_signature', $order->getStoreId());
+				$url = (Mage::getStoreConfig($source.'/sandbox_flag', $order->getStoreId()) === '1') ?
+					'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
+			}
+			else {
+				$username = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_username', $order->getStoreId()));
+				$password = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_password', $order->getStoreId()));
+				$signature = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_signature', $order->getStoreId()));
+				$url = (Mage::getStoreConfig($source.'/api_sandbox', $order->getStoreId()) === '1') ?
+					'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
+			}
 
 			$canRefundMore = $order->canCreditmemo();
 			$isFullRefund = !$canRefundMore && (($order->getBaseTotalOnlineRefunded() + $order->getBaseTotalOfflineRefunded()) == 0);
