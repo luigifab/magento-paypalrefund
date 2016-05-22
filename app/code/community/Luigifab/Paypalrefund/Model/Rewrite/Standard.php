@@ -1,8 +1,8 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated D/27/03/2016
- * Version 4
+ * Updated V/29/04/2016
+ * Version 5
  *
  * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
@@ -78,11 +78,11 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_VERBOSE, 1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_VERBOSE, true);
+			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, implode('&', $params));
 			$curl = curl_exec($ch);
 
