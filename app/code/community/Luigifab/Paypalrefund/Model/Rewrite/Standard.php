@@ -1,8 +1,8 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated V/29/04/2016
- * Version 5
+ * Updated V/08/07/2016
+ * Version 7
  *
  * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
@@ -25,7 +25,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 
 	public function __construct() {
 
-		if (Mage::getStoreConfig('paypalrefund/general/enabled') === '1') {
+		if (Mage::getStoreConfigFlag('paypalrefund/general/enabled')) {
 			$this->_canRefund = true;
 			$this->_canRefundInvoicePartial = true;
 		}
@@ -50,14 +50,14 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 				$username = Mage::getStoreConfig($source.'/api_username', $order->getStoreId());
 				$password = Mage::getStoreConfig($source.'/api_password', $order->getStoreId());
 				$signature = Mage::getStoreConfig($source.'/api_signature', $order->getStoreId());
-				$url = (Mage::getStoreConfig($source.'/sandbox_flag', $order->getStoreId()) === '1') ?
+				$url = (Mage::getStoreConfigFlag($source.'/sandbox_flag', $order->getStoreId())) ?
 					'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
 			}
 			else {
 				$username = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_username', $order->getStoreId()));
 				$password = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_password', $order->getStoreId()));
 				$signature = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_signature', $order->getStoreId()));
-				$url = (Mage::getStoreConfig($source.'/api_sandbox', $order->getStoreId()) === '1') ?
+				$url = (Mage::getStoreConfigFlag($source.'/api_sandbox', $order->getStoreId())) ?
 					'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
 			}
 
@@ -73,7 +73,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$params[] = 'TRANSACTIONID='.$captureTxnId;
 			$params[] = 'CURRENCYCODE='.$order->getBaseCurrencyCode();
 			$params[] = ($isFullRefund) ? 'REFUNDTYPE=Full' : 'REFUNDTYPE=Partial';
-			$params[] = 'NOTE='.urlencode(Mage::helper('paypalrefund')->__('Refund from %s (ip: %s).', $admin, $ip));
+			$params[] = 'NOTE='.urlencode(Mage::helper('paypalrefund')->__('Refund completed by %s (ip: %s).', $admin, $ip));
 			$params[] = 'AMT='.floatval($amount);
 
 			$ch = curl_init();
