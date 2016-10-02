@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated V/01/07/2016
+ * Updated W/21/09/2016
  * Version 2
  *
  * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
@@ -21,7 +21,7 @@
 <config>
 	<modules>
 		<Luigifab_Paypalrefund>
-			<version>2.0.2</version>
+			<version>2.0.3</version>
 		</Luigifab_Paypalrefund>
 	</modules>
 	<global>

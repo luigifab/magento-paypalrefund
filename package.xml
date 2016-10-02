@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Luigifab_Paypalrefund</name>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <stability>stable</stability>
     <license uri="https://opensource.org/licenses/gpl-2.0">GPL</license>
     <channel>luigifab</channel>
@@ -10,9 +10,9 @@
     <description>Refund online PayPal transactions.</description>
     <notes>Oh yeah!</notes>
     <authors><author><name>Fabrice Creuzot</name><user>luigifab</user><email>code@luigifab.info</email></author></authors>
-    <date>2016-07-23</date>
-    <time>10:47:16</time>
-    <contents><target name="magecommunity"><dir name="Luigifab"><dir name="Paypalrefund"><dir name="Block"><dir name="Adminhtml"><dir name="Config"><file name="Help.php" hash="7679b10f770f145269dfd59610390249"/></dir></dir></dir><dir name="Helper"><file name="Data.php" hash="c14bac8fd88b59108dbd768c474061f8"/></dir><dir name="Model"><dir name="Rewrite"><file name="Standard.php" hash="2ca8de4f831e627d22b41f47c84912e5"/></dir><file name="Source.php" hash="0353c7a329a8532fa43de2366b570b8e"/></dir><dir name="etc"><file name="adminhtml.xml" hash="ffe7b0049bab06e56abe059a54e59d40"/><file name="config.xml" hash="da1700933573f9634d9ab5c2d2315ca8"/><file name="system.xml" hash="def244dfabd0788deba71e9e9a77e031"/></dir><file name="license" hash="09c79391f5ec909e9bd0ad62c151b6d5"/><file name="readme" hash="6e5fe2e28ffde86fee49b84e82fa8872"/></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Luigifab_Paypalrefund.xml" hash="17ad70ed15c92774dec7a48194bc1b17"/></dir></target><target name="magelocale"><dir name="fr_FR"><file name="Luigifab_Paypalrefund.csv" hash="7acac68fb36218453029ecd94f9ae623"/></dir><dir name="fr_CA"><file name="Luigifab_Paypalrefund.csv" hash="7acac68fb36218453029ecd94f9ae623"/></dir></target></contents>
+    <date>2016-09-21</date>
+    <time>19:07:48</time>
+    <contents><target name="magecommunity"><dir name="Luigifab"><dir name="Paypalrefund"><dir name="Block"><dir name="Adminhtml"><dir name="Config"><file name="Help.php" hash="a49d4f40594d768323277914b758a7f2"/></dir></dir></dir><dir name="Helper"><file name="Data.php" hash="c14bac8fd88b59108dbd768c474061f8"/></dir><dir name="Model"><dir name="Rewrite"><file name="Standard.php" hash="f3968d4ce5439a767669d1cff08a838d"/></dir><file name="Source.php" hash="0353c7a329a8532fa43de2366b570b8e"/></dir><dir name="etc"><file name="adminhtml.xml" hash="ffe7b0049bab06e56abe059a54e59d40"/><file name="config.xml" hash="48bd6113b0b1c97e2da2f485bc0c89cb"/><file name="system.xml" hash="def244dfabd0788deba71e9e9a77e031"/></dir><file name="license" hash="09c79391f5ec909e9bd0ad62c151b6d5"/><file name="readme" hash="6e5fe2e28ffde86fee49b84e82fa8872"/></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Luigifab_Paypalrefund.xml" hash="17ad70ed15c92774dec7a48194bc1b17"/></dir></target><target name="magelocale"><dir name="fr_FR"><file name="Luigifab_Paypalrefund.csv" hash="7acac68fb36218453029ecd94f9ae623"/></dir><dir name="fr_CA"><file name="Luigifab_Paypalrefund.csv" hash="7acac68fb36218453029ecd94f9ae623"/></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.5.0</min><max>7.9.9</max></php></required></dependencies>
 </package>

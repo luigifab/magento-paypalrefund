@@ -1,8 +1,8 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated V/05/06/2015
- * Version 1
+ * Updated M/13/09/2016
+ * Version 2
  *
  * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
@@ -22,6 +22,6 @@ class Luigifab_Paypalrefund_Block_Adminhtml_Config_Help extends Mage_Adminhtml_B
 
 	public function render(Varien_Data_Form_Element_Abstract $element) {
 		$url = 'https://redmine.luigifab.info/projects/magento/wiki/paypalrefund';
-		return '<p class="box">Luigifab/Paypalrefund '.$this->helper('paypalrefund')->getVersion().' <a href="'.$url.'" onclick="window.open(this.href); return false;" style="float:right;">'.$url.'</a></p>';
+		return sprintf('<p class="box">Luigifab/Paypalrefund %s <a href="%s" onclick="window.open(this.href); return false;" style="float:right;">%2$s</a></p>', $this->helper('paypalrefund')->getVersion(), $url);
 	}
 }
