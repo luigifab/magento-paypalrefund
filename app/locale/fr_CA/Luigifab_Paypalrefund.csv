@@ -1,8 +1,6 @@
 "PayPal refund","Remboursement PayPal"
 "Credentials source","Source des identifiants"
-"Username","Utilisateur"
 "Signature","Signature"
-"Sandbox","Bac à sable (<span lang=""en"">sandbox</span>)"
 "Get credentials","Obtenir les informations d'accès"
 "Refund completed by %s (ip: %s).","Remboursement effectué par %s (ip : %s)."
 "%s: %s. %s.","%s : %s. %s."

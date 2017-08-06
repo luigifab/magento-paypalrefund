@@ -1,11 +1,10 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated D/27/03/2016
- * Version 4
+ * Updated M/28/02/2017
  *
- * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
- * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
+ * Copyright 2015-2017 | Fabrice Creuzot (luigifab) <code~luigifab~info>
+ * https://www.luigifab.info/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated D/27/03/2016
- * Version 4
+ * Updated W/10/05/2017
  *
- * Copyright 2015-2016 | Fabrice Creuzot (luigifab) <code~luigifab~info>
- * https://redmine.luigifab.info/projects/magento/wiki/paypalrefund
+ * Copyright 2015-2017 | Fabrice Creuzot (luigifab) <code~luigifab~info>
+ * https://www.luigifab.info/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -20,8 +19,8 @@
 
 <config>
 	<tabs>
-		<luigifab>
-			<label>luigifab</label>
+		<luigifab translate="label">
+			<label>Tools</label>
 			<sort_order>103</sort_order>
 		</luigifab>
 	</tabs>
@@ -35,11 +34,11 @@
 			<show_in_store>0</show_in_store>
 			<groups>
 				<help>
+					<frontend_model>paypalrefund/adminhtml_config_help</frontend_model>
 					<sort_order>0</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
 					<show_in_store>0</show_in_store>
-					<frontend_model>paypalrefund/adminhtml_config_help</frontend_model>
 				</help>
 				<general translate="label">
 					<label>General</label>
