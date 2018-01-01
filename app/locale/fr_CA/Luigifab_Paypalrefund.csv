@@ -3,6 +3,7 @@
 "Signature","Signature"
 "Get credentials","Obtenir les informations d'accès"
 "Refund completed by %s (ip: %s).","Remboursement effectué par %s (ip : %s)."
+"Invalid response received from PayPal, please try again.","La réponse reçue de PayPal est invalide, veuillez réessayer."
 "%s: %s. %s.","%s : %s. %s."
 "Below","Ci-dessous"
 "From PayPal configuration","Depuis la configuration PayPal"

@@ -1,9 +1,9 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated M/28/02/2017
+ * Updated S/11/11/2017
  *
- * Copyright 2015-2017 | Fabrice Creuzot (luigifab) <code~luigifab~info>
+ * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -34,6 +34,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 
 	public function refund(Varien_Object $payment, $amount) {
 
+		$help  = Mage::helper('paypalrefund');
 		$order = $payment->getOrder();
 
 		$storeId = $order->getStoreId();
@@ -46,7 +47,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$source  = Mage::getStoreConfig('paypalrefund/general/source', $storeId);
 			$admin   = Mage::getSingleton('admin/session')->getData('user')->getData('username');
 
-			if ($source === 'paypal/wpp') {
+			if ($source == 'paypal/wpp') {
 				$username = Mage::getStoreConfig($source.'/api_username', $storeId);
 				$password = Mage::getStoreConfig($source.'/api_password', $storeId);
 				$signature = Mage::getStoreConfig($source.'/api_signature', $storeId);
@@ -62,9 +63,10 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			}
 
 			$canRefundMore = $order->canCreditmemo();
-			$isFullRefund = !$canRefundMore && (($order->getData('base_total_online_refunded') + $order->getData('base_total_offline_refunded')) == 0);
+			$isFullRefund = !$canRefundMore && (($order->getData('base_total_online_refunded') +
+			                                     $order->getData('base_total_offline_refunded')) == 0);
 
-			$params = array();
+			$params   = array();
 			$params[] = 'METHOD=RefundTransaction';
 			$params[] = 'VERSION='.$version;
 			$params[] = 'PWD='.$password;
@@ -73,7 +75,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$params[] = 'TRANSACTIONID='.$captureTxnId;
 			$params[] = 'CURRENCYCODE='.$order->getData('base_currency_code');
 			$params[] = ($isFullRefund) ? 'REFUNDTYPE=Full' : 'REFUNDTYPE=Partial';
-			$params[] = 'NOTE='.urlencode(Mage::helper('paypalrefund')->__('Refund completed by %s (ip: %s).', $admin, getenv('REMOTE_ADDR')));
+			$params[] = 'NOTE='.urlencode($help->__('Refund completed by %s (ip: %s).', $admin, getenv('REMOTE_ADDR')));
 			$params[] = 'AMT='.floatval($amount);
 
 			$ch = curl_init();
@@ -81,12 +83,16 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 6);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, implode('&', $params));
 			$curl = curl_exec($ch);
+			$curl = ((curl_errno($ch) !== 0) || ($curl === false)) ? 'CURL_ERROR_'.curl_errno($ch).' '.curl_error($ch) : $curl;
 			curl_close($ch);
+
+			if (strpos($curl, 'CURL_ERROR_') !== false)
+				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$curl);
 
 			$data = explode('&', $curl);
 			$response = array();
@@ -112,8 +118,11 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 				$payment->setData('is_transaction_closed', 1); // refund initiated by merchant
 				$payment->setData('should_close_parent_transaction', !$canRefundMore);
 			}
+			else if (!empty($response['L_ERRORCODE0'])) {
+				Mage::throwException($help->__('%s: %s. %s.', $response['L_ERRORCODE0'], $response['L_SHORTMESSAGE0'], $response['L_LONGMESSAGE0']));
+			}
 			else {
-				Mage::throwException(Mage::helper('paypalrefund')->__('%s: %s. %s.', $response['L_ERRORCODE0'], $response['L_SHORTMESSAGE0'], $response['L_LONGMESSAGE0']));
+				Mage::throwException($help->__('Invalid response received from PayPal, please try again.'));
 			}
 		}
 		else {
