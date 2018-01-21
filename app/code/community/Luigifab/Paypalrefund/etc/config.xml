@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated D/29/10/2017
+ * Updated V/19/01/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -20,7 +20,7 @@
 <config>
 	<modules>
 		<Luigifab_Paypalrefund>
-			<version>2.1.0</version>
+			<version>2.1.2</version>
 		</Luigifab_Paypalrefund>
 	</modules>
 	<global>
