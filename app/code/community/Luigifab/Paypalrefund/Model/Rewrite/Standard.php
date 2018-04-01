@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated S/11/11/2017
+ * Updated D/11/03/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -19,7 +19,7 @@
 
 class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Standard {
 
-	//protected $_canRefund               = true;
+	//protected $_canRefund = true;
 	//protected $_canRefundInvoicePartial = true;
 
 	public function __construct() {
@@ -43,39 +43,40 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 
 		if ($captureTxnId) {
 
-			$version = 51;
-			$source  = Mage::getStoreConfig('paypalrefund/general/source', $storeId);
-			$admin   = Mage::getSingleton('admin/session')->getData('user')->getData('username');
+			$ip = (!empty(getenv('HTTP_X_FORWARDED_FOR'))) ? explode(',', getenv('HTTP_X_FORWARDED_FOR')) : false;
+			$ip = (!empty($ip)) ? array_pop($ip) : getenv('REMOTE_ADDR');
+
+			$user = Mage::getSingleton('admin/session')->getData('user')->getData('username');
+			$source = Mage::getStoreConfig('paypalrefund/general/source', $storeId);
 
 			if ($source == 'paypal/wpp') {
-				$username = Mage::getStoreConfig($source.'/api_username', $storeId);
-				$password = Mage::getStoreConfig($source.'/api_password', $storeId);
+				$username  = Mage::getStoreConfig($source.'/api_username', $storeId);
+				$password  = Mage::getStoreConfig($source.'/api_password', $storeId);
 				$signature = Mage::getStoreConfig($source.'/api_signature', $storeId);
 				$url = (Mage::getStoreConfigFlag($source.'/sandbox_flag', $storeId)) ?
 					'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
 			}
 			else {
-				$username = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_username', $storeId));
-				$password = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_password', $storeId));
+				$username  = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_username', $storeId));
+				$password  = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_password', $storeId));
 				$signature = Mage::helper('core')->decrypt(Mage::getStoreConfig($source.'/api_signature', $storeId));
 				$url = (Mage::getStoreConfigFlag($source.'/api_sandbox', $storeId)) ?
 					'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
 			}
 
 			$canRefundMore = $order->canCreditmemo();
-			$isFullRefund = !$canRefundMore && (($order->getData('base_total_online_refunded') +
-			                                     $order->getData('base_total_offline_refunded')) == 0);
+			$isFullRefund  = !$canRefundMore && (($order->getData('base_total_online_refunded') + $order->getData('base_total_offline_refunded')) == 0);
 
 			$params   = array();
 			$params[] = 'METHOD=RefundTransaction';
-			$params[] = 'VERSION='.$version;
+			$params[] = 'VERSION=51';
 			$params[] = 'PWD='.$password;
 			$params[] = 'USER='.$username;
 			$params[] = 'SIGNATURE='.$signature;
 			$params[] = 'TRANSACTIONID='.$captureTxnId;
 			$params[] = 'CURRENCYCODE='.$order->getData('base_currency_code');
 			$params[] = ($isFullRefund) ? 'REFUNDTYPE=Full' : 'REFUNDTYPE=Partial';
-			$params[] = 'NOTE='.urlencode($help->__('Refund completed by %s (ip: %s).', $admin, getenv('REMOTE_ADDR')));
+			$params[] = 'NOTE='.urlencode($help->__('Refund completed by %s (ip: %s).', $user, $ip));
 			$params[] = 'AMT='.floatval($amount);
 
 			$ch = curl_init();
@@ -94,13 +95,13 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			if (strpos($curl, 'CURL_ERROR_') !== false)
 				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$curl);
 
-			$data = explode('&', $curl);
-			$response = array();
+			$arr  = explode('&', $curl);
+			$data = array();
 
-			foreach ($data as $i => $value) {
+			foreach ($arr as $i => $value) {
 				$tmp = explode('=', $value);
 				if (count($tmp) > 1)
-					$response[$tmp[0]] = urldecode($tmp[1]);
+					$data[$tmp[0]] = urldecode($tmp[1]);
 			}
 
 			// REFUNDTRANSACTIONID=5JY40024A6126543H
@@ -114,19 +115,19 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			// &VERSION=51
 			// &BUILD=16915562
 			if (strpos($curl, 'ACK=Success') !== false) {
-				$payment->setData('transaction_id', $response['REFUNDTRANSACTIONID']);
+				$payment->setData('transaction_id', $data['REFUNDTRANSACTIONID']);
 				$payment->setData('is_transaction_closed', 1); // refund initiated by merchant
 				$payment->setData('should_close_parent_transaction', !$canRefundMore);
 			}
-			else if (!empty($response['L_ERRORCODE0'])) {
-				Mage::throwException($help->__('%s: %s. %s.', $response['L_ERRORCODE0'], $response['L_SHORTMESSAGE0'], $response['L_LONGMESSAGE0']));
+			else if (!empty($data['L_ERRORCODE0'])) {
+				Mage::throwException($help->__('%s: %s. %s.', $data['L_ERRORCODE0'], $data['L_SHORTMESSAGE0'], $data['L_LONGMESSAGE0']));
 			}
 			else {
 				Mage::throwException($help->__('Invalid response received from PayPal, please try again.'));
 			}
 		}
 		else {
-			Mage::throwException(Mage::helper('paypal')->__('Impossible to issue a refund transaction because the capture transaction does not exist.'));
+			Mage::throwException($help->__('Impossible to issue a refund transaction because the capture transaction does not exist.'));
 		}
 
 		return $this;

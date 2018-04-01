@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated W/10/05/2017
+ * Updated D/25/02/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -28,7 +28,7 @@
 		<paypalrefund translate="label">
 			<label>PayPal refund</label>
 			<tab>luigifab</tab>
-			<sort_order>66</sort_order>
+			<sort_order>95</sort_order>
 			<show_in_default>1</show_in_default>
 			<show_in_website>1</show_in_website>
 			<show_in_store>0</show_in_store>
@@ -117,7 +117,7 @@
 							<sandbox_button_label>sandbox.paypal.com</sandbox_button_label>
 							<sandbox_button_url><![CDATA[https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_login-api-run]]></sandbox_button_url>
 							<frontend_model>paypal/adminhtml_system_config_apiWizard</frontend_model>
-							<sort_order>145</sort_order>
+							<sort_order>15</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>

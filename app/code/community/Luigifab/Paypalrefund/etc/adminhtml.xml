@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated M/28/02/2017
+ * Updated V/23/02/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -32,7 +32,7 @@
 										<children-->
 											<paypalrefund translate="title">
 												<title>PayPal refund</title>
-												<sort_order>103066</sort_order>
+												<sort_order>103095</sort_order>
 											</paypalrefund>
 										<!--/children>
 									</luigifab-->
