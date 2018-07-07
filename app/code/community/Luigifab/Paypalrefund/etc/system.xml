@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated D/25/02/2018
+ * Updated V/22/06/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -126,5 +126,99 @@
 				</general>
 			</groups>
 		</paypalrefund>
+		<payment>
+			<groups>
+				<paypal_payments>
+					<payflow_advanced>
+						<fields>
+							<required_settings>
+								<fields>
+									<enable_payflow_advanced>
+										<label>Enable</label>
+									</enable_payflow_advanced>
+								</fields>
+							</required_settings>
+						</fields>
+					</payflow_advanced>
+					<wpp>
+						<fields>
+							<wpp_required_settings>
+								<fields>
+									<enable_wpp>
+										<label>Enable</label>
+									</enable_wpp>
+								</fields>
+							</wpp_required_settings>
+						</fields>
+					</wpp>
+					<wps>
+						<fields>
+							<wps_required_settings>
+								<fields>
+									<enable_wps>
+										<label>Enable</label>
+									</enable_wps>
+								</fields>
+							</wps_required_settings>
+						</fields>
+					</wps>
+					<wps_express>
+						<fields>
+							<wps_express_checkout_required>
+								<fields>
+									<enable_wps_express_checkout>
+										<label>Enable</label>
+									</enable_wps_express_checkout>
+								</fields>
+							</wps_express_checkout_required>
+						</fields>
+					</wps_express>
+					<paypal_verisign>
+						<fields>
+							<paypal_payflow_required>
+								<fields>
+									<enable_paypal_payflow>
+										<label>Enable</label>
+									</enable_paypal_payflow>
+								</fields>
+							</paypal_payflow_required>
+						</fields>
+					</paypal_verisign>
+					<payments_pro_payflow_edition>
+						<fields>
+							<pp_pe_required_settings>
+								<fields>
+									<enable_pp_pe>
+										<label>Enable</label>
+									</enable_pp_pe>
+								</fields>
+							</pp_pe_required_settings>
+						</fields>
+					</payments_pro_payflow_edition>
+					<payments_pro_hosted_solution>
+						<fields>
+							<pphs_required_settings>
+								<fields>
+									<pphs_enable>
+										<label>Enable</label>
+									</pphs_enable>
+								</fields>
+							</pphs_required_settings>
+						</fields>
+					</payments_pro_hosted_solution>
+					<express_checkout>
+						<fields>
+							<express_checkout_required>
+								<fields>
+									<enable_express_checkout>
+										<label>Enable</label>
+									</enable_express_checkout>
+								</fields>
+							</express_checkout_required>
+						</fields>
+					</express_checkout>
+				</paypal_payments>
+			</groups>
+		</payment>
 	</sections>
 </config>
