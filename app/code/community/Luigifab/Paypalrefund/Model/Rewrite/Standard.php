@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated D/11/03/2018
+ * Updated L/16/07/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -131,5 +131,9 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 		}
 
 		return $this;
+	}
+
+	public function specialCheckRewrite() {
+		return true;
 	}
 }

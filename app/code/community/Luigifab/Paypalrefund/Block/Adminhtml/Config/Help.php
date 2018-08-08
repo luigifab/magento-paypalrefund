@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated M/22/05/2018
+ * Updated J/26/07/2018
  *
  * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
  * https://www.luigifab.info/magento/paypalrefund
@@ -20,7 +20,42 @@
 class Luigifab_Paypalrefund_Block_Adminhtml_Config_Help extends Mage_Adminhtml_Block_Abstract implements Varien_Data_Form_Element_Renderer_Interface {
 
 	public function render(Varien_Data_Form_Element_Abstract $element) {
-		return sprintf('<p class="box">Luigifab/Paypalrefund %s <a href="https://www.%s" style="float:right;">%2$s</a></p>',
-			$this->helper('paypalrefund')->getVersion(), 'luigifab.info/magento/paypalrefund');
+
+		if (($msg = $this->checkRewrites()) === true) {
+			return sprintf('<p class="box">Luigifab/Paypalrefund %s <a href="https://www.%s" style="float:right;">%2$s</a></p>',
+				$this->helper('paypalrefund')->getVersion(), 'luigifab.info/magento/paypalrefund');
+		}
+		else {
+			return sprintf('<p class="box">Luigifab/Paypalrefund %s <a href="https://www.%s" style="float:right;">%2$s</a></p>'.
+				'<p class="box" style="margin-top:-5px; color:white; background-color:#E60000;"><strong>%s</strong><br />%s</p>',
+				$this->helper('paypalrefund')->getVersion(), 'luigifab.info/magento/paypalrefund',
+				$this->__('INCOMPLETE MODULE INSTALLATION'),
+				$this->__('There is conflict (<em>%s</em>).', $msg));
+		}
+	}
+
+	private function checkRewrites() {
+
+		$rewrites = array(
+			array('block', 'paypal/standard_redirect'),
+			array('model', 'paypal/standard')
+		);
+
+		foreach ($rewrites as $rewrite) {
+			if ($rewrite[0] == 'model') {
+				if (!method_exists(Mage::getModel($rewrite[1]), 'specialCheckRewrite'))
+					return $rewrite[1];
+			}
+			else if ($rewrite[0] == 'resource') {
+				if (!method_exists(Mage::getResourceModel($rewrite[1]), 'specialCheckRewrite'))
+					return $rewrite[1];
+			}
+			else if ($rewrite[0] == 'block') {
+				if (!method_exists(Mage::getBlockSingleton($rewrite[1]), 'specialCheckRewrite'))
+					return $rewrite[1];
+			}
+		}
+
+		return true;
 	}
 }
