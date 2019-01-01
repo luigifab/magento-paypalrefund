@@ -3,8 +3,8 @@
  * Created V/05/06/2015
  * Updated M/28/02/2017
  *
- * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
- * https://www.luigifab.info/magento/paypalrefund
+ * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * https://www.luigifab.fr/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -27,8 +27,8 @@
 				<Mage_Adminhtml />
 				<Mage_Paypal />
 			</depends>
-			<!-- see https://www.luigifab.info/magento/modules for more information -->
-			<update>https://www.luigifab.info/magento/rss.xml</update>
+			<!-- see https://www.luigifab.fr/magento/modules for more information -->
+			<update>https://www.luigifab.fr/magento/rss.xml</update>
 		</Luigifab_Paypalrefund>
 	</modules>
 </config>

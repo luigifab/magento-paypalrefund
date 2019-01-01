@@ -1,10 +1,10 @@
 <?php
 /**
  * Created D/08/07/2018
- * Updated S/21/07/2018
+ * Updated S/01/09/2018
  *
- * Copyright 2015-2018 | Fabrice Creuzot (luigifab) <code~luigifab~info>
- * https://www.luigifab.info/magento/paypalrefund
+ * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * https://www.luigifab.fr/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -18,6 +18,10 @@
  */
 
 class Luigifab_Paypalrefund_Block_Rewrite_Redirect extends Mage_Paypal_Block_Standard_Redirect {
+
+	protected function _construct() {
+		$this->setModuleName('Mage_Paypal');
+	}
 
 	protected function _toHtml() {
 
