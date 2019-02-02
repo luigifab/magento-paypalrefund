@@ -1,7 +1,7 @@
 <?php
 /**
  * Created D/08/07/2018
- * Updated S/01/09/2018
+ * Updated J/10/01/2019
  *
  * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -29,12 +29,13 @@ class Luigifab_Paypalrefund_Block_Rewrite_Redirect extends Mage_Paypal_Block_Sta
 		if (!Mage::getStoreConfigFlag('paypalrefund/general/redirect'))
 			return $html;
 
-		$html = str_replace('<html><body>', '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="'.substr(Mage::getStoreConfig('general/locale/code'), 0, 2).'"><head><title>PayPal</title>
+		$lang = mb_substr(Mage::getStoreConfig('general/locale/code'), 0, 2);
+		$html = str_replace('<html lang="'.$lang.'"><body>', '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="'.mb_substr(Mage::getStoreConfig('general/locale/code'), 0, 2).'"><head><title>PayPal</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<meta http-equiv="Content-Language" content="'.substr(Mage::getStoreConfig('general/locale/code'), 0, 2).'">
+<meta http-equiv="Content-Language" content="'.$lang.'">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/x-icon" href="'.$this->getSkinUrl('favicon.ico').'">
 <style type="text/css">
@@ -44,10 +45,8 @@ div.box { display:flex; align-items:center; justify-content:center; flex-directi
 h1 { padding:0.5em; }
 span.field-row { display:none; }
 </style></head><body><div class="box"><h1>PayPal</h1>', $html);
-		$html = str_replace('</body>', '</div></body>', $html);
-		$html = str_replace(' name=""', '', $html);
 
-		return $html;
+		return str_replace(array('</body>', ' name=""'), array('</div></body>', ''), $html);
 	}
 
 	public function specialCheckRewrite() {
