@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated J/26/07/2018
+ * Updated J/14/02/2019
  *
  * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -22,13 +22,12 @@ class Luigifab_Paypalrefund_Block_Adminhtml_Config_Help extends Mage_Adminhtml_B
 	public function render(Varien_Data_Form_Element_Abstract $element) {
 
 		if (($msg = $this->checkRewrites()) === true) {
-			return sprintf('<p class="box">Luigifab/Paypalrefund %s <a href="https://www.%s" style="float:right;">%2$s</a></p>',
-				$this->helper('paypalrefund')->getVersion(), 'luigifab.fr/magento/paypalrefund');
+			return sprintf('<p class="box">Luigifab/%s %s <span style="float:right;"><a href="https://www.%s">%3$s</a> | ⚠ IPv6</span></p>',
+				'Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/magento/paypalrefund');
 		}
 		else {
-			return sprintf('<p class="box">Luigifab/Paypalrefund %s <a href="https://www.%s" style="float:right;">%2$s</a></p>'.
-				'<p class="box" style="margin-top:-5px; color:white; background-color:#E60000;"><strong>%s</strong><br />%s</p>',
-				$this->helper('paypalrefund')->getVersion(), 'luigifab.fr/magento/paypalrefund',
+			return sprintf('<p class="box">Luigifab/%s %s <span style="float:right;"><a href="https://www.%s">%3$s</a> | ⚠ IPv6</span></p><p class="box" style="margin-top:-5px; color:white; background-color:#E60000;"><strong>%s</strong><br />%s</p>',
+				'Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/magento/paypalrefund',
 				$this->__('INCOMPLETE MODULE INSTALLATION'),
 				$this->__('There is conflict (<em>%s</em>).', $msg));
 		}

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated M/15/01/2019
+ * Updated V/01/03/2019
  *
  * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -29,7 +29,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$this->_canRefundInvoicePartial = true;
 		}
 
-		return parent::__construct();
+		parent::__construct();
 	}
 
 	public function refund(Varien_Object $payment, $amount) {

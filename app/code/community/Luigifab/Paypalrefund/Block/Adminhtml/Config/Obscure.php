@@ -1,7 +1,7 @@
 <?php
 /**
  * Created S/12/01/2019
- * Updated S/12/01/2019
+ * Updated M/05/02/2019
  *
  * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -17,8 +17,7 @@
  * GNU General Public License (GPL) for more details.
  */
 
-use Varien_Data_Form_Element_Renderer_Interface as Varien_DFER_Interface;
-class Luigifab_Paypalrefund_Block_Adminhtml_Config_Obscure extends Mage_Adminhtml_Block_System_Config_Form_Field implements Varien_DFER_Interface {
+class Luigifab_Paypalrefund_Block_Adminhtml_Config_Obscure extends Mage_Adminhtml_Block_System_Config_Form_Field {
 
 	protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element) {
 		return str_replace('type="password"', 'type="text" autocomplete="off"', parent::_getElementHtml($element));
