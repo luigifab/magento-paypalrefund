@@ -1,5 +1,6 @@
 "PayPal refund","PayPal Erstattung"
 "Credentials source","Anmeldeinformationenquelle"
+"<abbr title=""Application Programming Interface"">API</abbr>","<abbr title=""Programmierschnittstelle (Application Programming Interface)"">API</abbr>"
 "Signature","Unterschrift"
 "Get credentials","Anmeldeinformationen erhalten"
 "Refund completed by %s (ip: %s).","Von %s geleistete Erstattung (ip: %s)."

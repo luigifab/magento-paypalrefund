@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated V/01/03/2019
+ * Updated L/15/04/2019
  *
  * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -87,14 +87,14 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, implode('&', $params));
-			$curl = curl_exec($ch);
-			$curl = ((curl_errno($ch) !== 0) || ($curl === false)) ? 'CURL_ERROR_'.curl_errno($ch).' '.curl_error($ch) : $curl;
+			$response = curl_exec($ch);
+			$response = ((curl_errno($ch) !== 0) || ($response === false)) ? 'CURL_ERROR_'.curl_errno($ch).' '.curl_error($ch) : $response;
 			curl_close($ch);
 
-			if (mb_strpos($curl, 'CURL_ERROR_') !== false)
-				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$curl);
+			if (mb_strpos($response, 'CURL_ERROR_') !== false)
+				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$response);
 
-			$arr  = explode('&', $curl);
+			$arr  = explode('&', $response);
 			$data = array();
 
 			foreach ($arr as $i => $value) {
@@ -113,7 +113,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			// &ACK=Success
 			// &VERSION=51
 			// &BUILD=16915562
-			if (mb_strpos($curl, 'ACK=Success') !== false) {
+			if (mb_strpos($response, 'ACK=Success') !== false) {
 				$payment->setData('transaction_id', $data['REFUNDTRANSACTIONID']);
 				$payment->setData('is_transaction_closed', 1); // refund initiated by merchant
 				$payment->setData('should_close_parent_transaction', !$canRefundMore);

@@ -1,5 +1,6 @@
 "PayPal refund","Reembolso via PayPal"
 "Credentials source","Informação de autenticação"
+"<abbr title=""Application Programming Interface"">API</abbr>","<abbr title=""Interface de Programação de Aplicações (Application Programming Interface)"">API</abbr>"
 "Signature","Assinatura"
 "Get credentials","Obter as informações de acesso"
 "Refund completed by %s (ip: %s).","Reembolso efetuado por %s (ip: %s)."

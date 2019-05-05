@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated S/12/01/2019
+ * Updated V/03/05/2019
  *
  * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -75,8 +75,8 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
 						</source>
-						<api>
-							<label>API</label>
+						<api translate="label">
+							<label><![CDATA[<abbr title="Application Programming Interface">API</abbr>]]></label>
 							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
 							<sort_order>10</sort_order>
 							<show_in_default>1</show_in_default>
