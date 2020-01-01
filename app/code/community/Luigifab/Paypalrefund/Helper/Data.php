@@ -1,9 +1,9 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated M/28/02/2017
+ * Updated J/17/10/2019
  *
- * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -21,5 +21,13 @@ class Luigifab_Paypalrefund_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	public function getVersion() {
 		return (string) Mage::getConfig()->getModuleConfig('Luigifab_Paypalrefund')->version;
+	}
+
+	public function _(string $data, $a = null, $b = null) {
+		return (mb_stripos($txt = $this->__(' '.$data, $a, $b), ' ') === 0) ? $this->__($data, $a, $b) : $txt;
+	}
+
+	public function escapeEntities($data, bool $quotes = false) {
+		return htmlspecialchars($data, $quotes ? ENT_SUBSTITUTE | ENT_COMPAT : ENT_SUBSTITUTE | ENT_NOQUOTES);
 	}
 }

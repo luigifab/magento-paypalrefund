@@ -1,9 +1,9 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated J/27/12/2018
+ * Updated M/20/08/2019
  *
- * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -21,9 +21,9 @@ class Luigifab_Paypalrefund_Model_Source {
 
 	public function toOptionArray() {
 
-		return array(
-			array('value' => 'paypalrefund/general', 'label' => Mage::helper('paypalrefund')->__('Below')),
-			array('value' => 'paypal/wpp',           'label' => Mage::helper('paypalrefund')->__('From PayPal configuration'))
-		);
+		return [
+			['value' => 'paypalrefund/general', 'label' => Mage::helper('paypalrefund')->__('Below')],
+			['value' => 'paypal/wpp', 'label' => Mage::helper('paypalrefund')->__('From PayPal configuration')]
+		];
 	}
 }

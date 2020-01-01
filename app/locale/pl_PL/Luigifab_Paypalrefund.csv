@@ -1,2 +1,3 @@
-"<abbr title=""Application Programming Interface"">API</abbr>","<abbr title=""Interfejs programowania aplikacji (Application Programming Interface)"">API</abbr>"
-"%s: %s. %s.","%s: %s. %s."
+"Username","Nazwa użytkownika"
+"INCOMPLETE MODULE INSTALLATION","NIEKOMPLETNA INSTALACJA MODUŁU"
+"There is conflict (<em>%s</em>).","Pojawił się błąd (<em lang=""en"">%s</em>)."

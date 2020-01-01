@@ -1,9 +1,9 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated L/15/04/2019
+ * Updated D/22/12/2019
  *
- * Copyright 2015-2019 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -18,9 +18,6 @@
  */
 
 class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Standard {
-
-	//protected $_canRefund = true;
-	//protected $_canRefundInvoicePartial = true;
 
 	public function __construct() {
 
@@ -37,17 +34,15 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 		$help  = Mage::helper('paypalrefund');
 		$order = $payment->getOrder();
 
-		$storeId = $order->getStoreId();
-		$captureTxnId = $payment->getData('parent_transaction_id') ?: $payment->getData('last_trans_id');
+		$storeId   = $order->getStoreId();
+		$captureId = $payment->getData('parent_transaction_id') ?: $payment->getData('last_trans_id');
 
-		if ($captureTxnId) {
+		if (!empty($captureId)) {
 
-			$ip = !empty(getenv('HTTP_X_FORWARDED_FOR')) ? explode(',', getenv('HTTP_X_FORWARDED_FOR')) : false;
-			$ip = !empty($ip) ? array_pop($ip) : getenv('REMOTE_ADDR');
+			$ip = empty(getenv('HTTP_X_FORWARDED_FOR')) ? false : explode(',', getenv('HTTP_X_FORWARDED_FOR'));
+			$ip = empty($ip) ? getenv('REMOTE_ADDR') : array_pop($ip);
 
-			$user = Mage::getSingleton('admin/session')->getData('user')->getData('username');
 			$source = Mage::getStoreConfig('paypalrefund/general/source', $storeId);
-
 			if ($source == 'paypal/wpp') {
 				$username  = Mage::getStoreConfig($source.'/api_username', $storeId);
 				$password  = Mage::getStoreConfig($source.'/api_password', $storeId);
@@ -64,38 +59,38 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			}
 
 			$canRefundMore = $order->canCreditmemo();
-			$isFullRefund  = !$canRefundMore && (($order->getData('base_total_online_refunded') + $order->getData('base_total_offline_refunded')) == 0);
-
-			$params   = array();
-			$params[] = 'METHOD=RefundTransaction';
-			$params[] = 'VERSION=51';
-			$params[] = 'PWD='.$password;
-			$params[] = 'USER='.$username;
-			$params[] = 'SIGNATURE='.$signature;
-			$params[] = 'TRANSACTIONID='.$captureTxnId;
-			$params[] = 'CURRENCYCODE='.$order->getData('base_currency_code');
-			$params[] = $isFullRefund ? 'REFUNDTYPE=Full' : 'REFUNDTYPE=Partial';
-			$params[] = 'NOTE='.urlencode($help->__('Refund completed by %s (ip: %s).', $user, $ip));
-			$params[] = 'AMT='.floatval($amount);
+			$isFull = !$canRefundMore && (($order->getData('base_total_online_refunded') + $order->getData('base_total_offline_refunded')) == 0);
+			$params = [
+				'METHOD=RefundTransaction',
+				'VERSION=51',
+				'PWD='.$password,
+				'USER='.$username,
+				'SIGNATURE='.$signature,
+				'TRANSACTIONID='.$captureId,
+				'CURRENCYCODE='.$order->getData('base_currency_code'),
+				'REFUNDTYPE='.($isFull ? 'Full' : 'Partial'),
+				'NOTE='.urlencode($help->__('Refund completed by %s (ip: %s).', $this->getUsername(), $ip)),
+				'AMT='.((float) $amount)
+			];
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 6);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 8);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 18);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, implode('&', $params));
 			$response = curl_exec($ch);
 			$response = ((curl_errno($ch) !== 0) || ($response === false)) ? 'CURL_ERROR_'.curl_errno($ch).' '.curl_error($ch) : $response;
 			curl_close($ch);
 
-			if (mb_strpos($response, 'CURL_ERROR_') !== false)
+			if (mb_stripos($response, 'CURL_ERROR_') !== false)
 				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$response);
 
 			$arr  = explode('&', $response);
-			$data = array();
+			$data = [];
 
 			foreach ($arr as $i => $value) {
 				$tmp = explode('=', $value);
@@ -113,7 +108,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			// &ACK=Success
 			// &VERSION=51
 			// &BUILD=16915562
-			if (mb_strpos($response, 'ACK=Success') !== false) {
+			if (mb_stripos($response, 'ACK=Success') !== false) {
 				$payment->setData('transaction_id', $data['REFUNDTRANSACTIONID']);
 				$payment->setData('is_transaction_closed', 1); // refund initiated by merchant
 				$payment->setData('should_close_parent_transaction', !$canRefundMore);
@@ -132,7 +127,29 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 		return $this;
 	}
 
-	public function specialCheckRewrite() {
-		return true;
+	public function getUsername() {
+
+		$file = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+		$file = array_pop($file);
+		$file = array_key_exists('file', $file) ? basename($file['file']) : '';
+
+		// backend
+		// PHP_SAPI évite Warning: session_save_path(): Cannot change save path when headers already sent
+		if ((PHP_SAPI != 'cli') && Mage::app()->getStore()->isAdmin() && Mage::getSingleton('admin/session')->isLoggedIn())
+			$user = sprintf('admin %s', Mage::getSingleton('admin/session')->getData('user')->getData('username'));
+		// cron
+		else if (is_object($cron = Mage::registry('current_cron')))
+			$user = sprintf('cron %d - %s', $cron->getId(), $cron->getData('job_code'));
+		// xyz.php
+		else if ($file != 'index.php')
+			$user = $file;
+		// full action name
+		else if (is_object($action = Mage::app()->getFrontController()->getAction()))
+			$user = $action->getFullActionName();
+		// frontend
+		else
+			$user = sprintf('frontend %d', Mage::app()->getStore()->getData('code'));
+
+		return $user;
 	}
 }
