@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated M/26/11/2019
+ * Updated J/23/01/2020
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/magento/paypalrefund
@@ -141,22 +141,22 @@
 		<payment>
 			<groups>
 				<paypal_notice>
-					<help_link></help_link>
+					<help_link />
 				</paypal_notice>
 				<paypal_alternative_payment_methods>
-					<comment></comment>
-					<paypal_title></paypal_title>
-					<help_url></help_url>
+					<comment />
+					<paypal_title />
+					<help_url />
 				 </paypal_alternative_payment_methods>
 				<paypal_payment_solutions>
 					<label>PayPal</label>
-					<comment></comment>
-					<paypal_title></paypal_title>
-					<help_url></help_url>
+					<comment />
+					<paypal_title />
+					<help_url />
 				</paypal_payment_solutions>
 				<paypal_payments>
 					<payflow_advanced>
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<required_settings>
 								<fields>
@@ -168,7 +168,7 @@
 						</fields>
 					</payflow_advanced>
 					<wpp>
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<wpp_required_settings>
 								<fields>
@@ -183,7 +183,7 @@
 						<frontend_model>paypal/adminhtml_system_config_fieldset_payment</frontend_model>
 						<!--frontend_model>paypal/adminhtml_system_config_fieldset_deprecated</frontend_model-->
 						<!--was_enabled_path>payment/paypal_standard/was_active</was_enabled_path-->
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<wps_required_settings>
 								<fields>
@@ -198,7 +198,7 @@
 						<frontend_model>paypal/adminhtml_system_config_fieldset_payment</frontend_model>
 						<!--frontend_model>paypal/adminhtml_system_config_fieldset_pathDependent</frontend_model-->
 						<!--hide_case_path>payment/paypal_standard/active</hide_case_path-->
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<wps_express_checkout_required>
 								<fields>
@@ -210,7 +210,7 @@
 						</fields>
 					</wps_express>
 					<paypal_verisign>
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<paypal_payflow_required>
 								<fields>
@@ -222,7 +222,7 @@
 						</fields>
 					</paypal_verisign>
 					<payments_pro_payflow_edition>
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<pp_pe_required_settings>
 								<fields>
@@ -234,7 +234,7 @@
 						</fields>
 					</payments_pro_payflow_edition>
 					<payments_pro_hosted_solution>
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<pphs_required_settings>
 								<fields>
@@ -246,7 +246,7 @@
 						</fields>
 					</payments_pro_hosted_solution>
 					<express_checkout>
-						<learn_more_link></learn_more_link>
+						<learn_more_link />
 						<fields>
 							<express_checkout_required>
 								<fields>
