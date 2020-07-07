@@ -1,10 +1,10 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated D/22/12/2019
+ * Updated D/31/05/2020
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
- * https://www.luigifab.fr/magento/paypalrefund
+ * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -93,7 +93,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$data = [];
 
 			foreach ($arr as $i => $value) {
-				$tmp = explode('=', $value);
+				$tmp = (array) explode('=', $value); // (yes)
 				if (count($tmp) > 1)
 					$data[$tmp[0]] = urldecode($tmp[1]);
 			}
@@ -134,7 +134,6 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 		$file = array_key_exists('file', $file) ? basename($file['file']) : '';
 
 		// backend
-		// PHP_SAPI évite Warning: session_save_path(): Cannot change save path when headers already sent
 		if ((PHP_SAPI != 'cli') && Mage::app()->getStore()->isAdmin() && Mage::getSingleton('admin/session')->isLoggedIn())
 			$user = sprintf('admin %s', Mage::getSingleton('admin/session')->getData('user')->getData('username'));
 		// cron

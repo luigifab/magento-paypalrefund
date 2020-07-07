@@ -1,10 +1,10 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated S/01/02/2020
+ * Updated D/31/05/2020
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
- * https://www.luigifab.fr/magento/paypalrefund
+ * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -25,12 +25,12 @@ class Luigifab_Paypalrefund_Block_Adminhtml_Config_Help extends Mage_Adminhtml_B
 		if ($msg !== true)
 			return sprintf('<p class="box">%s %s <span class="right"><a href="https://www.%s">%3$s</a> | ⚠ IPv6</span></p>'.
 				'<p class="box" style="margin-top:-5px; color:white; background-color:#E60000;"><strong>%s</strong><br />%s</p>',
-				'Luigifab/Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/magento/paypalrefund',
+				'Luigifab/Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/openmage/paypalrefund',
 				$this->__('INCOMPLETE MODULE INSTALLATION'),
 				$this->__('There is conflict (<em>%s</em>).', $msg));
 
 		return sprintf('<p class="box">%s %s <span class="right"><a href="https://www.%s">%3$s</a> | ⚠ IPv6</span></p>',
-			'Luigifab/Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/magento/paypalrefund');
+			'Luigifab/Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/openmage/paypalrefund');
 	}
 
 	private function checkRewrites() {

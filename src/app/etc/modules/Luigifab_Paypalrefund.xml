@@ -1,10 +1,10 @@
-<?php
-/**
- * Created S/12/01/2019
- * Updated M/05/02/2019
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Created V/05/06/2015
+ * Updated M/28/02/2017
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
- * https://www.luigifab.fr/magento/paypalrefund
+ * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -15,11 +15,20 @@
  * but without any warranty, without even the implied warranty of
  * merchantability or fitness for a particular purpose. See the
  * GNU General Public License (GPL) for more details.
- */
+-->
 
-class Luigifab_Paypalrefund_Block_Adminhtml_Config_Obscure extends Mage_Adminhtml_Block_System_Config_Form_Field {
-
-	protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element) {
-		return str_replace('type="password"', 'type="text" autocomplete="off"', parent::_getElementHtml($element));
-	}
-}
+<config>
+	<modules>
+		<Luigifab_Paypalrefund>
+			<active>true</active>
+			<codePool>community</codePool>
+			<depends>
+				<Mage_Core />
+				<Mage_Adminhtml />
+				<Mage_Paypal />
+			</depends>
+			<!-- see https://www.luigifab.fr/openmage/modules for more information -->
+			<update>https://www.luigifab.fr/openmage/rss.xml</update>
+		</Luigifab_Paypalrefund>
+	</modules>
+</config>

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?php
+/**
  * Created V/05/06/2015
- * Updated M/28/02/2017
+ * Updated M/20/08/2019
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
- * https://www.luigifab.fr/magento/paypalrefund
+ * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -15,20 +15,15 @@
  * but without any warranty, without even the implied warranty of
  * merchantability or fitness for a particular purpose. See the
  * GNU General Public License (GPL) for more details.
--->
+ */
 
-<config>
-	<modules>
-		<Luigifab_Paypalrefund>
-			<active>true</active>
-			<codePool>community</codePool>
-			<depends>
-				<Mage_Core />
-				<Mage_Adminhtml />
-				<Mage_Paypal />
-			</depends>
-			<!-- see https://www.luigifab.fr/magento/modules for more information -->
-			<update>https://www.luigifab.fr/magento/rss.xml</update>
-		</Luigifab_Paypalrefund>
-	</modules>
-</config>
+class Luigifab_Paypalrefund_Model_Source {
+
+	public function toOptionArray() {
+
+		return [
+			['value' => 'paypalrefund/general', 'label' => Mage::helper('paypalrefund')->__('Below')],
+			['value' => 'paypal/wpp', 'label' => Mage::helper('paypalrefund')->__('From PayPal configuration')]
+		];
+	}
+}

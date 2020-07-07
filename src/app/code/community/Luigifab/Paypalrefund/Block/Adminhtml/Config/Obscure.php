@@ -1,10 +1,10 @@
 <?php
 /**
- * Created V/05/06/2015
- * Updated M/20/08/2019
+ * Created S/12/01/2019
+ * Updated M/05/02/2019
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
- * https://www.luigifab.fr/magento/paypalrefund
+ * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -17,13 +17,9 @@
  * GNU General Public License (GPL) for more details.
  */
 
-class Luigifab_Paypalrefund_Model_Source {
+class Luigifab_Paypalrefund_Block_Adminhtml_Config_Obscure extends Mage_Adminhtml_Block_System_Config_Form_Field {
 
-	public function toOptionArray() {
-
-		return [
-			['value' => 'paypalrefund/general', 'label' => Mage::helper('paypalrefund')->__('Below')],
-			['value' => 'paypal/wpp', 'label' => Mage::helper('paypalrefund')->__('From PayPal configuration')]
-		];
+	protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element) {
+		return str_replace('type="password"', 'type="text" autocomplete="off"', parent::_getElementHtml($element));
 	}
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated M/07/01/2020
+ * Updated V/12/06/2020
  *
  * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
- * https://www.luigifab.fr/magento/paypalrefund
+ * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
  * it under the terms of the GNU General Public License (GPL) as published
@@ -20,7 +20,7 @@
 <config>
 	<modules>
 		<Luigifab_Paypalrefund>
-			<version>2.3.1</version>
+			<version>4.0.0</version>
 		</Luigifab_Paypalrefund>
 	</modules>
 	<global>
