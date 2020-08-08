@@ -1,8 +1,8 @@
 Docs      : https://www.luigifab.fr/openmage/paypalrefund
-Mirror    : https://github.com/luigifab/openmage-paypalrefund
+Tracker   : https://github.com/luigifab/openmage-paypalrefund
 Composer  : https://packagist.org/packages/luigifab/openmage-paypalrefund
 Module    : Luigifab/Paypalrefund
-License   : GNU GPL 2 (https://opensource.org/licenses/gpl-2.0)
+License   : GNU GPL 2+ (https://opensource.org/licenses/gpl-2.0)
 Copyright : 2015-2020 Fabrice Creuzot (luigifab) <code~luigifab~fr>
 
 
@@ -12,11 +12,9 @@ Copyright : 2015-2020 Fabrice Creuzot (luigifab) <code~luigifab~fr>
 THE COMPOSER KEY FOR COMMAND LINE IS: luigifab/openmage-paypalrefund
 THE EXTENSION KEY FOR MAGENTO CONNECT MANAGER IS: https://www.luigifab.fr/magento/connect/luigifab/Luigifab_Paypalrefund
 
-THE MODULE AND ALL THE TRANSLATIONS AND ALL THE DOCUMENTATION ARE EXCEPTIONALLY MAGNIFICENT.
 IF YOU FOUND A MISTAKE OR A BUG, PLEASE, CONTACT ME (IN FRENCH OR IN ENGLISH) AT code~luigifab~fr
-
 CSS AND JS FILES ARE MINIFIED WITH clean-css (github.com/jakubpawlowicz/clean-css) AND uglify-js (github.com/mishoo/UglifyJS2).
-ALL FILES (INCLUDING DOCUMENTATION AND TRANSLATIONS) ARE LICENSED UNDER THE TERMS OF GNU GPL 2.0+ LICENSE.
+ALL FILES (INCLUDING DOCUMENTATION AND TRANSLATIONS) ARE LICENSED UNDER THE TERMS OF THE GNU GPL 2+ LICENSE.
 
 
 
@@ -53,6 +51,7 @@ Files and directories
 - app/locale/pt_BR/Luigifab_Paypalrefund.csv
 - app/locale/pt_PT/Luigifab_Paypalrefund.csv
 - app/locale/ru_RU/Luigifab_Paypalrefund.csv
+- app/locale/sk_SK/Luigifab_Paypalrefund.csv
 - app/locale/tr_TR/Luigifab_Paypalrefund.csv
 - app/locale/zh_CN/Luigifab_Paypalrefund.csv
 - app/etc/modules/Luigifab_Paypalrefund.xml
@@ -64,7 +63,7 @@ Translations in de-DE (deutsch/Deutschland) by:
 Translations in en-US (english/United-States) by:
 - Fabrice Creuzot (luigifab) <code~luigifab~fr> 2015-2020
 Translations in es-ES (español/España) by:
-- Hélène Vergine <vergineh~gmail~com> 2017
+- Hélène Vergine <vergineh~gmail~com> 2017, 2020
 - Guillaume Genetet <genetet.incorporated~gmail~com> 2018 https://fr.tipeee.com/william-broome
 Translations in fr-FR (français/France) by:
 - Fabrice Creuzot (luigifab) <code~luigifab~fr> 2015-2020

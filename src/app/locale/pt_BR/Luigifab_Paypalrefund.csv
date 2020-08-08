@@ -4,6 +4,8 @@
 "Username","Nome do usuário"
 "Signature","Assinatura"
 "Get credentials","Obter as informações de acesso"
+"INCOMPLETE MODULE INSTALLATION","INSTALACAO INCOMPLETA DO MODULO"
+"There is conflict (<em>%s</em>).","Há um conflicto (<em lang=""en"">%s</em>)."
 "Refund completed by %s (ip: %s).","Reembolso efetuado por %s (ip: %s)."
 "Invalid response received from PayPal, please try again.","A resposta recebida do PayPal é inválida, tente novamente."
 "Below","Abaixo"
