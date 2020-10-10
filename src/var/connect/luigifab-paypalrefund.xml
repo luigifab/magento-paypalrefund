@@ -1,5 +1,5 @@
 <_>
-   <form_key>R5ywcha1MNODUSOw</form_key>
+   <form_key>nmYRFP6MC48cN1Pj</form_key>
    <name>Luigifab_Paypalrefund</name>
    <channel>luigifab</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>https://www.luigifab.fr/openmage/paypalrefund</description>
    <license>GPL</license>
    <license_uri>https://opensource.org/licenses/gpl-2.0</license_uri>
-   <version>4.0.1</version>
+   <version>4.0.2</version>
    <stability>stable</stability>
-   <notes>Only for OpenMage/Magento 1.9+ with PHP 7.2+</notes>
+   <notes>Only for OpenMage/Magento 1.9+ with PHP 7.2+/8.0+</notes>
    <authors>
       <name>
          <name>Fabrice Creuzot</name>
