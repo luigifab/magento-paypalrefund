@@ -1,7 +1,7 @@
 {
     "type": "magento-module",
     "name": "luigifab/openmage-paypalrefund",
-    "description": "A module to refund PayPal transactions for OpenMage and Magento.",
+    "description": "A module to refund PayPal transactions for OpenMage.",
     "homepage": "https://github.com/luigifab/openmage-paypalrefund",
     "license": "GPL-2.0-or-later",
     "authors": [
@@ -23,6 +23,10 @@
         {
             "type": "other",
             "url": "https://gandi.link/f/4b904048"
+        },
+        {
+            "type": "other",
+            "url": "https://ekwateur.fr/?parrain=EKW001147103"
         }
     ],
     "require": {
@@ -49,6 +53,7 @@
             ["src/app/locale/es_PE/Luigifab_Paypalrefund.csv", "app/locale/es_PE/Luigifab_Paypalrefund.csv"],
             ["src/app/locale/es_VE/Luigifab_Paypalrefund.csv", "app/locale/es_VE/Luigifab_Paypalrefund.csv"],
             ["src/app/locale/fr_CA/Luigifab_Paypalrefund.csv", "app/locale/fr_CA/Luigifab_Paypalrefund.csv"],
+            ["src/app/locale/fr_CH/Luigifab_Paypalrefund.csv", "app/locale/fr_CH/Luigifab_Paypalrefund.csv"],
             ["src/app/locale/fr_FR/Luigifab_Paypalrefund.csv", "app/locale/fr_FR/Luigifab_Paypalrefund.csv"],
             ["src/app/locale/it_CH/Luigifab_Paypalrefund.csv", "app/locale/it_CH/Luigifab_Paypalrefund.csv"],
             ["src/app/locale/it_IT/Luigifab_Paypalrefund.csv", "app/locale/it_IT/Luigifab_Paypalrefund.csv"],

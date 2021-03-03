@@ -3,7 +3,7 @@
  * Created S/12/01/2019
  * Updated M/05/02/2019
  *
- * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify

@@ -1,9 +1,9 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated J/23/01/2020
+ * Updated J/04/02/2021
  *
- * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -24,7 +24,8 @@ class Luigifab_Paypalrefund_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 
 	public function _(string $data, ...$values) {
-		return (mb_stripos($txt = $this->__(' '.$data, ...$values), ' ') === 0) ? $this->__($data, ...$values) : $txt;
+		$text = $this->__(' '.$data, ...$values);
+		return ($text[0] == ' ') ? $this->__($data, ...$values) : $text;
 	}
 
 	public function escapeEntities($data, bool $quotes = false) {

@@ -1,9 +1,9 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated D/31/05/2020
+ * Updated V/25/12/2020
  *
- * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -82,14 +82,14 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			curl_setopt($ch, CURLOPT_TIMEOUT, 18);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, implode('&', $params));
-			$response = curl_exec($ch);
-			$response = ((curl_errno($ch) !== 0) || ($response === false)) ? 'CURL_ERROR_'.curl_errno($ch).' '.curl_error($ch) : $response;
+			$result = curl_exec($ch);
+			$result = ((curl_errno($ch) !== 0) || ($result === false)) ? trim('CURL_ERROR_'.curl_errno($ch).' '.curl_error($ch)) : $result;
 			curl_close($ch);
 
-			if (mb_stripos($response, 'CURL_ERROR_') !== false)
-				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$response);
+			if (mb_stripos($result, 'CURL_ERROR_') !== false)
+				Mage::throwException($help->__('Invalid response received from PayPal, please try again.').'<br />'.$result);
 
-			$arr  = explode('&', $response);
+			$arr  = explode('&', $result);
 			$data = [];
 
 			foreach ($arr as $i => $value) {
@@ -108,7 +108,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			// &ACK=Success
 			// &VERSION=51
 			// &BUILD=16915562
-			if (mb_stripos($response, 'ACK=Success') !== false) {
+			if (mb_stripos($result, 'ACK=Success') !== false) {
 				$payment->setData('transaction_id', $data['REFUNDTRANSACTIONID']);
 				$payment->setData('is_transaction_closed', 1); // refund initiated by merchant
 				$payment->setData('should_close_parent_transaction', !$canRefundMore);

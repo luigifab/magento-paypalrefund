@@ -1,9 +1,9 @@
 <?php
 /**
  * Created D/08/07/2018
- * Updated M/26/11/2019
+ * Updated D/14/02/2021
  *
- * Copyright 2015-2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
  *
  * This program is free software, you can redistribute it or modify
@@ -29,7 +29,7 @@ class Luigifab_Paypalrefund_Block_Rewrite_Redirect extends Mage_Paypal_Block_Sta
 		if (!Mage::getStoreConfigFlag('paypalrefund/general/redirect'))
 			return $html;
 
-		$locale = mb_substr(Mage::getStoreConfig('general/locale/code'), 0, 2);
+		$locale = substr(Mage::getStoreConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE), 0, 2);
 		$html   = preg_replace('#<html[^>]*><body>#', '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="'.$locale.'"><head><title>PayPal</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
