@@ -10,7 +10,7 @@ Copyright : 2015-2021 Fabrice Creuzot (luigifab) <code~luigifab~fr>
 
 
 IF YOU FOUND A MISTAKE OR A BUG, PLEASE, CONTACT ME (IN FRENCH OR IN ENGLISH) AT code~luigifab~fr
-CSS AND JS FILES ARE MINIFIED WITH clean-css (github.com/jakubpawlowicz/clean-css) AND uglify-js (github.com/mishoo/UglifyJS).
+CSS AND JS FILES ARE MINIFIED WITH clean-css (github.com/jakubpawlowicz/clean-css) AND uglify-js (github.com/mishoo/uglifyjs).
 ALL FILES (INCLUDING DOCUMENTATION AND TRANSLATIONS) ARE LICENSED UNDER THE TERMS OF THE GNU GPL 2+ LICENSE.
 
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated V/25/12/2020
+ * Updated V/16/04/2021
  *
  * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
@@ -92,7 +92,7 @@ class Luigifab_Paypalrefund_Model_Rewrite_Standard extends Mage_Paypal_Model_Sta
 			$arr  = explode('&', $result);
 			$data = [];
 
-			foreach ($arr as $i => $value) {
+			foreach ($arr as $value) {
 				$tmp = (array) explode('=', $value); // (yes)
 				if (count($tmp) > 1)
 					$data[$tmp[0]] = urldecode($tmp[1]);

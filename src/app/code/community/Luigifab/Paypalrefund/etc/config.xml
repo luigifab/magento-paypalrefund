@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Created V/05/06/2015
- * Updated S/23/01/2021
+ * Updated V/07/05/2021
  *
  * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
@@ -20,7 +20,7 @@
 <config>
 	<modules>
 		<Luigifab_Paypalrefund>
-			<version>4.2.0</version>
+			<version>4.2.1</version>
 		</Luigifab_Paypalrefund>
 	</modules>
 	<global>

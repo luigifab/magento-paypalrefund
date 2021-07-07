@@ -1,7 +1,7 @@
 <?php
 /**
  * Created V/05/06/2015
- * Updated V/12/02/2021
+ * Updated L/24/05/2021
  *
  * Copyright 2015-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://www.luigifab.fr/openmage/paypalrefund
@@ -23,8 +23,7 @@ class Luigifab_Paypalrefund_Block_Adminhtml_Config_Help extends Mage_Adminhtml_B
 
 		$msg = $this->checkRewrites();
 		if ($msg !== true)
-			return sprintf('<p class="box">%s %s <span class="right"><a href="https://www.%s">%3$s</a> | ⚠ IPv6</span></p>'.
-				'<p class="box" style="margin-top:-5px; color:white; background-color:#E60000;"><strong>%s</strong><br />%s</p>',
+			return sprintf('<p class="box">%s %s <span class="right"><a href="https://www.%s">%3$s</a> | ⚠ IPv6</span></p><p class="box" style="margin-top:-5px; color:white; background-color:#E60000;"><strong>%s</strong><br />%s</p>',
 				'Luigifab/Paypalrefund', $this->helper('paypalrefund')->getVersion(), 'luigifab.fr/openmage/paypalrefund',
 				$this->__('INCOMPLETE MODULE INSTALLATION'),
 				$this->__('There is conflict (<em>%s</em>).', $msg));

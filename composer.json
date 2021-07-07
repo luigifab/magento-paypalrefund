@@ -2,6 +2,7 @@
     "type": "magento-module",
     "name": "luigifab/openmage-paypalrefund",
     "description": "A module to refund PayPal transactions for OpenMage.",
+    "keywords": ["openmage", "openmage-module"],
     "homepage": "https://github.com/luigifab/openmage-paypalrefund",
     "license": "GPL-2.0-or-later",
     "authors": [

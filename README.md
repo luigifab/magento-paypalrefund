@@ -6,7 +6,7 @@ For more information, go to https://www.luigifab.fr/openmage/paypalrefund (IPv6 
 
 This repository is a releases mirror. To install the module, please use the composer key available in the documentation.
 
-- Current version: 4.2.0 (03/03/2021)
+- Current version: 4.2.1 (07/07/2021)
 - Compatibility: OpenMage 19.x / 20.x, PHP 7.2 / 7.3 / 7.4 / 8.0
 - Client compatibility: Firefox 36+, Chrome 32+, Opera 19+, Edge 16+, Safari 9+
 - Translations: English (en), French (fr-FR/fr-CA), German (de), Italian (it), Portuguese (pt-PT/pt-BR), Spanish (es)
